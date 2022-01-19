@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import React from 'react';
+
 import './App.css';
+import UsersList from './components/UsersList';
+import AddUser from './components/AddUser';
+import { useState } from 'react/cjs/react.development';
 
 function App() {
+  const [messages, setMessages] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AddUser onAddUserClicked={(message) => {
+        setMessages(prevMessage => { return [...prevMessage, message]; })
+      }}></AddUser>
+      <UsersList>{messages}</UsersList>
     </div>
   );
 }
