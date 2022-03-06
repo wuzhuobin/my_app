@@ -7,7 +7,6 @@ import Context from "./store";
 
 function App() {
   const [cartVisible, setCartVisible] = React.useState(false);
-  const { cart } = React.useContext(Context);
   return (
     <div className="App">
       <Context.ContextProvider>

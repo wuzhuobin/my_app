@@ -1,5 +1,6 @@
 import React from "react";
 import DUMMY_MEALS from "./dummy-meals";
+import hooks from "../hooks";
 
 const cartReducer = function (state, action) {
   if (!action.items) {
@@ -15,8 +16,10 @@ const cartReducer = function (state, action) {
   return newState;
 };
 const ContextProvider = function (props) {
-  const [cart, cartDispatch] = React.useReducer(cartReducer, {});
-  const context = { cart, cartDispatch, meals: DUMMY_MEALS };
+  // const [cart, cartDispatch] = React.useReducer(cartReducer, {});
+  const [cart, cartDispatch] = hooks.useCart();
+  // const context = { cart, cartDispatch, meals: DUMMY_MEALS };
+  const context = { cart, cartDispatch, meals: hooks.useDummyMeals() };
   return <Context.Provider value={context}>{props.children}</Context.Provider>;
 };
 const defaultContext = {

@@ -11,20 +11,24 @@ const AvailableMeals = function () {
     <React.Fragment>
       <MealsSummary />
       <section className={style.meals}>
-        <Card>
-          <ul>
-            {meals.map((meal, index) => (
-              <li key={index}>
-                <MealItem
-                  id={meal.id}
-                  name={meal.name}
-                  description={meal.description}
-                  price={meal.price}
-                ></MealItem>
-              </li>
-            ))}
-          </ul>
-        </Card>
+        {meals.length > 0 ? (
+          <Card>
+            <ul>
+              {meals.map((meal, index) => (
+                <li key={index}>
+                  <MealItem
+                    id={meal.id}
+                    name={meal.name}
+                    description={meal.description}
+                    price={meal.price}
+                  ></MealItem>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ) : (
+          <div className={style.mealIsLoading}>Loading...</div>
+        )}
       </section>
     </React.Fragment>
   );
